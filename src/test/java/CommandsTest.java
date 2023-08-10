@@ -52,11 +52,8 @@ public class CommandsTest {
         System.out.println("input field value is : "+inputField.getAttribute("value"));
         inputField.clear();
 
-    }
-
-    @Test(priority = 2)
-    public void testDragAndDrop() {
-        driver.get("http://the-internet.herokuapp.com/drag_and_drop");
+        // chatshi rogorc daiwera ert testad unda daweriliyo da amito es aq gadmomaqvs da get methodi navigateit shevcvale
+        driver.navigate().to("http://the-internet.herokuapp.com/drag_and_drop");
 
         WebElement columnA = driver.findElement(By.id("column-a"));
         WebElement columnB = driver.findElement(By.id("column-b"));
@@ -70,6 +67,24 @@ public class CommandsTest {
         driver.close();
 
     }
+
+// amas davtoveb mainc aq
+//    @Test(priority = 2)
+//    public void testDragAndDrop() {
+//        driver.get("http://the-internet.herokuapp.com/drag_and_drop");
+//
+//        WebElement columnA = driver.findElement(By.id("column-a"));
+//        WebElement columnB = driver.findElement(By.id("column-b"));
+//
+//        if(columnA.getLocation().y == columnB.getLocation().y) {
+//            System.out.println("Y coordinate of column A and column B are the same");
+//        } else {
+//            System.out.println("Y coordinate of column A and column B are not the same");
+//        }
+//
+//        driver.close();
+//
+//    }
 
 
 
