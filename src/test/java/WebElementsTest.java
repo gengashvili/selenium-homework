@@ -47,15 +47,16 @@ public class WebElementsTest {
     public void testChallengingDom() {
         driver.get("http://the-internet.herokuapp.com/challenging_dom");
 
-        WebElement loremHeading = driver.findElement(By.xpath("//th[contains(text(), 'Lorem')]"));
-        int indexOfLoremHeading = loremHeading.findElements(By.xpath("preceding-sibling::th")).size() + 1;
+        WebElement apeirianElement = driver.findElement(By.xpath("//td[contains(text(), 'Apeirian9')]"));
+        WebElement loremElement = apeirianElement.findElement(By.xpath("preceding-sibling::td[1]"));
+        WebElement apeirianNextElement = apeirianElement.findElement(By.xpath("following-sibling::td[1]"));
 
-        WebElement trElement = driver.findElement(By.xpath("//tr[td[contains(text(), 'Apeirian9')]]"));
-        WebElement loremValue  = trElement.findElement(By.xpath("./td["+indexOfLoremHeading+"]"));
-
-        System.out.println(loremValue.getText());
+        System.out.println("lorem value : " + loremElement.getText());
+        System.out.println("next element value : " + apeirianNextElement.getText());
 
     }
+
+
 
 
     @AfterMethod
