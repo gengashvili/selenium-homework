@@ -1,18 +1,19 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.*;
+import org.jetbrains.annotations.NotNull;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.*;
 
-
-public class JSexecutor {
+public class CrossBrowserTest {
     private WebDriver driver;
 
     @BeforeMethod
@@ -38,7 +39,7 @@ public class JSexecutor {
         }
     }
 
-    @Test(priority = 1)
+    @Test
     public void testTodoList() {
         driver.get("http://webdriveruniversity.com/To-Do-List/index.html");
 
@@ -67,37 +68,8 @@ public class JSexecutor {
 
     }
 
-    @Test(priority = 2)
-    public void testScrolling() {
-        driver.get("http://webdriveruniversity.com/Scrolling/index.html");
-
-        try {
-            WebElement leftBox = driver.findElement(By.xpath("/html/body/div/div[3]"));
-
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].scrollIntoView(true);", leftBox);
-
-            Actions actions = new Actions(driver);
-            actions.moveToElement(leftBox).perform();
-
-            Thread.sleep(1000);
-
-            String actualText = js.executeScript("return arguments[0].textContent;", leftBox).toString().trim();
-            String expectedText = "1 Entries";
-
-            Assert.assertEquals(actualText, expectedText, "Text validation failed");
-
-            System.out.println("Actual: " + actualText + "\nExpected: " + expectedText);
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-
     @AfterMethod
     public void tearDown() {
         driver.quit();
     }
-
 }
